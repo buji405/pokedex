@@ -1,36 +1,39 @@
 import React, { Component } from 'react';
-import pokedata from '../stubs/pokemon-data';
-import Pokemon from '../model/Pokemon';
-import PokeList from './components/PokeList/PokeList';
-import PokeCard from './components/PokeCard/PokeCard';
 import './Pokedex.css';
+import pokeData from '../stubs/pokemon-data.json';
+import Pokemon from '../model/Pokemon';
+import PokeList from './Components/PokeList/PokeList';
+import PokeCard from './Components/PokeCard/PokeCard';
+
+
+let charmander = new Pokemon(pokeData[3])
 
 class Pokedex extends Component {
-  constructor(props) {
+  constructor(props){
     super(props);
     this.state = {
       monster: {}
     }
   }
 
-  displyInfo(event) {
-    const poke = JSON.parse(event.target.dataset.pokemon);
-
-    this.setState({
-      monster: poke
-    })
-  }
+displayInfo(event) {
+  const poke = JSON.parse(event.target.dataset.pokemon);
+  this.setState({
+    monster: poke
+  })
+}
 
   render() {
-    let allPokemon = pokedata.map(e => new Pokemon(e))
 
+    const allPokemon = pokeData.map(e => new Pokemon(e));
     return (
-      <div className='Pokedex'>
-        <PokeList pokemon={allPokemon} handler={this.displyInfo.bind(this)} />
-        <PokeCard pokemon={this.state.monster} />
-      </div>
+      <section className="Pokedex">
+        <PokeList pokemon={allPokemon} handler={this.displayInfo.bind(this)}/>
+        <PokeCard  pokemon={this.state.monster}/>
+      </section>
     )
   }
 }
+
 
 export default Pokedex;

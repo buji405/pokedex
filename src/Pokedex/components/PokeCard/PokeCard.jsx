@@ -1,24 +1,24 @@
 import React from 'react';
-import pokeSprites from '../../../stubs/pokeSprites';
 import './PokeCard.css';
+import pokeSprites from '../../../stubs/pokeSprites';
 
 function PokeCard({pokemon}) {
-  let style = {
+  const pokePic = {
     backgroundImage: `url(${pokeSprites[pokemon.id - 1]})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 5,
-    backgroundSize: 'contain'
+    backgroundPosition: 'center',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
   }
 
   return (
-    <section className='PokeCard'>
-      <section style={style} className='picture'></section>
-      <section className='info'>
+    <section className="PokeCard">
+      <div style={pokePic} className='picture'></div>
+      <div className='info'>
         <h1>{pokemon.name}</h1>
         <p>{pokemon.type}</p>
         <p>{pokemon.attack}</p>
-        <p>{pokemon.defense}</p>
-      </section>
+      </div>
+
     </section>
   )
 }

@@ -1,18 +1,22 @@
 import React from 'react';
-import pokeSprites from '../../../stubs/pokeSprites';
 import './PokeCell.css';
+import pokeSprites from '../../../stubs/pokeSprites';
 
-function PokeCell({pokemon, display}) {
-  let style = {
-    backgroundImage: `url(${pokeSprites[pokemon.id - 1]})`,
-    backgroundRepeat: 'no-repeat',
-    backgroundPosition: 5,
-    backgroundSize: 'contain'
+function PokeCell({poke, display}) {
+  const pokePic = {
+    backgroundImage: `url(${pokeSprites[poke.id - 1]})`,
+    backgroundPosition: '5px',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat'
   }
 
+  const stringifyPoke = JSON.stringify(poke);
+
   return (
-    <button onClick={display} style={style} className='PokeCell' data-pokemon={JSON.stringify(pokemon)}>{pokemon.name}</button>
+    <button onClick={display} style={pokePic} data-pokemon={stringifyPoke} className="PokeCell">{poke.name} </button>
   )
 }
+
+
 
 export default PokeCell;
